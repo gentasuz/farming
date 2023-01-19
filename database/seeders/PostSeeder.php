@@ -21,7 +21,20 @@ class PostSeeder extends Seeder
             'end_time' => '2022-01-09 12:00:00',
             'comment' => 'SAMPLE COMMENT',
             'updated_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            'user_id' => '1',
+            'work_id' => '1',
+            'block_id' => '1'
             ]);
-        
+        DB::table('posts')->insert([
+            'start_time' => '2022-01-09 10:00:00',
+            'end_time' => '2022-01-09 12:00:00',
+            'comment' => 'SAMPLE COMMENT2',
+            'updated_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            'user_id' => '1',
+            'work_id' => '2',
+            'block_id' => '2'
+            ]);
     }
 }
