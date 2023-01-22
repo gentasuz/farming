@@ -16,29 +16,20 @@ class BlockSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('blocks')->insert([
-            'column_number' => '1',
-            'name' => '1-1',
-            'year' => '2022',
-            'crop' => '玉ねぎ',
-            'weed' => '5',
-            'area' => '10',
-            'comment' => '雑草多い',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-            ]);
-            
-        DB::table('blocks')->insert([
-            'column_number' => '2',
-            'name' => '1-2',
-            'year' => '2022',
-            'crop' => '玉ねぎ',
-            'weed' => '2',
-            'area' => '100',
-            'comment' => '雑草普通',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-            ]);
-            
+        for($i = 0 ; $i<30; ++$i){
+            $numbers[] = array(
+                'column_number' => $i ,
+                'name' => "1-$i",
+                'year' => 2022,
+                'crop' => '玉ねぎ',
+                'weed' => 0,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            );
+        }
+        
+        foreach ($numbers as $number){
+            DB::table('blocks')->insert($number);
+        }
     }
 }

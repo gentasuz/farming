@@ -24,16 +24,16 @@ class BlockController extends Controller
         
         foreach($blocks as $block)
         {
-            $block_filter[] = array("block_id"=> "$block->id", "search_fig" => "false");
+            $block_filter[] = array("name"=>"$block->name","block_id"=> "$block->id", "search_fig" => "false");
             foreach($block->posts as $post)
             {
                 if($post->start_time > $query['fromDate'])
                 {
                     array_pop($block_filter);
-                    $block_filter[] = array("block_id"=> "$block->id", "search_fig" => "true");
+                    $block_filter[] = array("name"=>"$block->name", "block_id"=> "$block->id", "search_fig" => "true");
                 }
             }
         }
-        return view('blocks/searchIndex')->with([ 'posts' => $post->get(), 'block_filter' => $block_filter]);
+        return view('blocks/searchIndex')->with([ 'posts' => $post->get() ,'block_filter' => $block_filter]);
     }
 }
