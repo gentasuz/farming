@@ -12,11 +12,11 @@ class Block extends Model
     
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class);
     }
     
     public function getByBlock(int $limit_count=10)
     {
-        return $this->posts()->with('block')->orderBy('updated_at','DESC')->paginate($limit_count);
+        return $this->posts()->with('blocks')->orderBy('updated_at','DESC')->paginate($limit_count);
     }
 }

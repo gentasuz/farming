@@ -12,6 +12,7 @@ class PostController extends Controller
 {
     public function index(Post $post,Work $work,Block $block)
     {
+        $posts = Post::with('blocks')->get();
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit(),'works' => $work->get(),'blocks' => $block->get()]);
     }
     
@@ -29,12 +30,16 @@ class PostController extends Controller
     {
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
+        $input_blocks = $request->blocks_array; //blocks.arrayはcreate.blade.phpで指定した配列
         $post->fill($input)->save();
+        $post->blocks()->attach($input_blocks);//attachメソッドで中間テーブルにデータを保存
         return redirect('/posts/' . $post->id);
+        
     }
     
     public function edit(Post $post,Work $work,Block $block)
     {
+        $posts = Post::with('blocks')->get();
         return view('posts/edit')->with(['post' => $post,'works' => $work->get(),'blocks' => $block->get()]);
     }
     
@@ -42,7 +47,10 @@ class PostController extends Controller
     {
         $input_post = $request['post'];
         $input_post += ['user_id' => $request->user()->id];
-        $post->update($input_post);
+        $input_blocks = $request->blocks_array;
+        $post->fill($input_post)->save();
+        $post->blocks()->attach($input_blocks);
+
         return redirect('/posts/' . $post->id);
     }
     

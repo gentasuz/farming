@@ -21,7 +21,9 @@
                     <h2 Class='title'>{{ $post->start_time }}</h2>
                     <small>{{ $post->user->name }}</small>
                     <a href="">{{ $post->work->worktype }}</a>
-                    <a href="">{{ $post->block->name }}</a>
+                    @foreach($post->blocks as $block)
+                        {{ $block->name}}
+                    @endforeach
                     <p Class='body'>{{ $post->comment }}</p>
                 </div>
             </div>

@@ -33,9 +33,9 @@ class Post extends Model
         return $this->belongsTo(Work::class);
     }
     
-    public function block()
+    public function blocks()
     {
-        return $this->belongsTo(Block::class);
+        return $this->belongsToMany(Block::class);
     }
     
     public function getPaginateByLimit(int $limit_count = 10)

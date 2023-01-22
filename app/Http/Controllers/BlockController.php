@@ -14,4 +14,26 @@ class BlockController extends Controller
     {
         return view('blocks/index')->with(['posts' => $block ->getByBlock()]);
     }
+    
+    public function searchIndex(Block $block,Post $post, Request $request)
+    {
+        $query = $request->query()['block'];
+        
+        $block_filter = [];
+        $blocks = $block->get();
+        
+        foreach($blocks as $block)
+        {
+            $block_filter[] = array("block_id"=> "$block->id", "search_fig" => "false");
+            foreach($block->posts as $post)
+            {
+                if($post->start_time > $query['fromDate'])
+                {
+                    array_pop($block_filter);
+                    $block_filter[] = array("block_id"=> "$block->id", "search_fig" => "true");
+                }
+            }
+        }
+        return view('blocks/searchIndex')->with([ 'posts' => $post->get(), 'block_filter' => $block_filter]);
+    }
 }

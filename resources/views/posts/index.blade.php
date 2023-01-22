@@ -16,16 +16,17 @@
                 <a href="posts/create">create</a>
                 <div Class='posts'>
                     @foreach($posts as $post)
-                    <a href="/posts/{{ $post->id}}" <h2 Class='title'>{{ $post->start_time }}</h2></a>
-                    <small>{{ $post->user->name }}</small>
-                    <a href="/works/{{ $post->work->id}}">{{ $post->work->worktype }}</a>
-                    <a href="/blocks/{{ $post->block->id}}">{{ $post->block->name }}</a>
-                    <p Class='body'>{{ $post->comment }}</p>
-                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" onclick="deletePost({{ $post->id }})">delete</button>
-                    </form>
+                        <a href="/posts/{{ $post->id }}" <h2 Class='title'>{{ $post->start_time }}</h2></a>
+                        <small>{{ $post->user->name }}</small>
+                        <a href="/works/{{ $post->work->id }}">{{ $post->work->worktype }}</a>
+                        @foreach($post->blocks as $block)
+                            <a href="/blocks/{{ $block->id }}">{{ $block->name }}</a>
+                        @endforeach
+                        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="deletePost({{ $post->id }})">delete</button>
+                        </form>
                     @endforeach
                 </div>
                 {{ Auth::user()->name }}
