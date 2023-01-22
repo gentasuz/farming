@@ -13,13 +13,19 @@
         </-slot>
              <body class="antialiased">
                 <h1>Blog Name</h1>
+                <form action="/blocks/searchIndex" method="GET">
+                    <input type="date" name="block[fromDate]">
+                    <input type="submit" value="検索">
+                </form>
                 <a href="posts/create">create</a>
                 <div Class='posts'>
                     @foreach($posts as $post)
                     <a href="/posts/{{ $post->id}}" <h2 Class='title'>{{ $post->start_time }}</h2></a>
                     <small>{{ $post->user->name }}</small>
                     <a href="/works/{{ $post->work->id}}">{{ $post->work->worktype }}</a>
-                    <a href="/blocks/{{ $post->block->id}}">{{ $post->block->name }}</a>
+                    @foreach($post->blocks as $block)
+                            <a href="/blocks/{{ $block->id}}">{{ $block->name}}</a>
+                    @endforeach
                     <p Class='body'>{{ $post->comment }}</p>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf

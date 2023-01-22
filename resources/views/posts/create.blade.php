@@ -39,10 +39,13 @@
                 </div>
                 <div class="category">
                     <h2>Block</h2>
-                    <select name="post[block_id]">
-                        @foreach($blocks as $block)
-                            <option value="{{ $block->id }}">{{ $block->name }}</option>
-                        @endforeach
+                    @foreach($blocks as $block)
+                        <label>
+                            <input type="checkbox" value="{{ $block->id }}" name="blocks_array[]">
+                                {{ $block->name}}
+                            </input>
+                        </label>
+                    @endforeach
                     </select>
                 </div>
                 <input type="submit" value="store">
