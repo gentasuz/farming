@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('work_id')->unsigned();
             $table->datetime('start_time', $precision = 0);
             $table->datetime('end_time', $precision = 0);
             $table->text('comment');
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 

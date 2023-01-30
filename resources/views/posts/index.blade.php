@@ -10,7 +10,7 @@
     </head>
     <x-app-layout>
              <body class="antialiased">
-                <h1>Blog Name</h1>
+                <h1>農作業管理</h1>
                 <p>ユーザー名：{{ Auth::user()->name }}</p>
                 <a class= "btn" href="posts/create">新規投稿</a>
                 <h2>投稿検索</h2>
@@ -100,5 +100,4 @@
                 </script>
             </body>
     </x-app-layout>
-   
 </html>
