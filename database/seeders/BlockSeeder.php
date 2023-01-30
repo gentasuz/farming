@@ -16,10 +16,48 @@ class BlockSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0 ; $i<30; ++$i){
+        DB::table('blocks')->delete();
+        
+        for($i = 1 ; $i<=40; ++$i){
             $numbers[] = array(
                 'column_number' => $i ,
-                'name' => "1-$i",
+                'name' => "NE-$i",
+                'year' => 2022,
+                'crop' => '玉ねぎ',
+                'weed' => 0,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            );
+        }
+        
+        for($i = 1 ; $i<=40; ++$i){
+            $numbers[] = array(
+                'column_number' => $i ,
+                'name' => "SE-$i",
+                'year' => 2022,
+                'crop' => '玉ねぎ',
+                'weed' => 0,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            );
+        }
+        
+        for($i = 1 ; $i<=20; ++$i){
+            $numbers[] = array(
+                'column_number' => $i ,
+                'name' => "NW-$i",
+                'year' => 2022,
+                'crop' => '玉ねぎ',
+                'weed' => 0,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            );
+        }
+        
+        for($i = 1 ; $i<=20; ++$i){
+            $numbers[] = array(
+                'column_number' => $i ,
+                'name' => "SW-$i",
                 'year' => 2022,
                 'crop' => '玉ねぎ',
                 'weed' => 0,

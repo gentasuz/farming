@@ -2,18 +2,16 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>blog</title>
+        <link rel="stylesheet" href="{{ asset('/css/style.css')  }}" >
+        <title>投稿編集</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     </head>
     <x-app-layout>
-        <-slot name="header">
-            edit  
-        </-slot>
         <body class="antialiased">
-            <h1>Blog Name</h1>
+            <h1>投稿編集</h1>
             <form action='/posts/{{ $post->id }}' method="POST">
                 @csrf
                 @method('PUT')
@@ -46,10 +44,10 @@
                         @endforeach
                     </select>
                 </div>
-                <input type="submit" value="update">
+                <input class="btn" type="submit" value="更新する">
             </form>
             <div class='footer'>
-                <a href="/posts/{{ $post->id }}">戻る</a>
+                <a class="btn" href="/posts/{{ $post->id }}">戻る</a>
             </div>
     </x-app-layout>
 </html>

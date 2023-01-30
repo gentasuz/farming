@@ -7,13 +7,26 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Work;
 use App\Models\Block;
+use GuzzleHttp\Middleware;
 
 class PostController extends Controller
 {
     public function index(Post $post,Work $work,Block $block)
     {
         $posts = Post::with('blocks')->get();
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(),'works' => $work->get(),'blocks' => $block->get()]);
+        
+        $client = new \GuzzleHttp\Client();
+        $url = 'https://weather.tsukumijima.net/api/forecast/city/012010';
+        $response = request('GET',$url);
+        $response = $client->request(
+        'GET',
+        $url
+        );
+
+        // レスポンスボディを取得
+        $responseBody = json_decode($response->getBody()->getContents(), true);
+
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(),'works' => $work->get(),'blocks' => $block->get(),'responseBody'=>$responseBody]);
     }
     
     public function show(Post $post)

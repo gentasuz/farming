@@ -12,6 +12,6 @@ class WorkController extends Controller
 {
     public function index(Work $work)
     {
-        return view('works/index')->with(['posts' => $work ->getByWork()]);
+        return view('works/index')->with(['posts' => $work ->getByWork(), 'work' => $work]);
     }
 }

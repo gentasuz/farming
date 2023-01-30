@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ asset('/css/style.css')  }}" >
         <title>blog</title>
 
         <!-- Fonts -->
@@ -9,9 +10,6 @@
 
     </head>
     <x-app-layout>
-        <-slot name="header">
-            create
-        </-slot>
         <body class="antialiased">
             <h1>Blog Name</h1>
             <form action="{{ route('store') }}" method="POST">
@@ -48,10 +46,10 @@
                     @endforeach
                     </select>
                 </div>
-                <input type="submit" value="store">
+                <input class="btn" type="submit" value="保存する">
             </form>
             <div class='footer'>
-                <a href="/">戻る</a>
+                <a class="btn" href="/">戻る</a>
             </div>
     </x-app-layout>
 </html>
