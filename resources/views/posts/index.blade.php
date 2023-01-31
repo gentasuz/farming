@@ -14,9 +14,10 @@
                 <p>ユーザー名：{{ Auth::user()->name }}</p>
                 <a class= "btn" href="posts/create">新規投稿</a>
                 <h2>投稿検索</h2>
-                <form action="/blocks/searchIndex" method="GET">
-                <input type="date" name="block[fromDate]">
-                <input class="btn" type="submit" value="この日以降の投稿データを検索">
+                <form id="searchBlock" action="/blocks/searchIndex" method="GET">
+                    <input type="date" id="searchValue" name="block[fromDate]">
+                    <button class="btn" type="button" onclick="searchBlock()">この日以降の投稿データを検索</button>
+                </form>
                 <h2>旭川市の天気予報</h2>
                 <div class='api'>
                     <table border="1">
@@ -72,11 +73,11 @@
                         </td>
                         <td>{{ $post->comment }}</td>
                         <td>
-                        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn" type="button" onclick="deletePost({{ $post->id }})">delete</button>
-                        </form>
+                            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn" type="button" onclick="deletePost({{ $post->id }})">delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -95,6 +96,16 @@
                         
                         if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
                             document.getElementById(`form_${id}`).submit();
+                        }
+                    }
+                    
+                    function searchBlock(){
+                        const searchValue = document.getElementById('searchValue').value;
+                        if (!searchValue){
+                            alert('日付を入力してください');
+                        }
+                        else{
+                            document.getElementById('searchBlock').submit();
                         }
                     }
                 </script>
