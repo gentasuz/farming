@@ -81,7 +81,6 @@
                         </td>
                     </tr>
                     @endforeach
-                
                 </table>
                 
                 <div class='paginate'>

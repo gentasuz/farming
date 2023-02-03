@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\BlockController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
